@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#0F1526" />
     <title>FantaReal - Regolamento Ufficiale</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/fr-logo-192.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -136,19 +139,10 @@
         font-size: 1.02rem;
       }
       .crest {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: block;
         width: 34px;
         height: 34px;
-        border-radius: 11px;
         flex-shrink: 0;
-        background: var(--accent);
-        color: var(--notte);
-        font-family: 'Space Grotesk', sans-serif;
-        font-weight: 700;
-        font-size: 0.82rem;
-        letter-spacing: -0.03em;
       }
       .menu-btn {
         display: flex;
@@ -312,6 +306,12 @@
         border-radius: var(--raggio);
         padding: 1.5rem 1.25rem 1.25rem 1.25rem;
         overflow: hidden;
+      }
+      .hero .logo {
+        display: block;
+        width: 64px;
+        height: 64px;
+        margin-bottom: 1.1rem;
       }
       .hero .chip {
         display: inline-block;
@@ -643,6 +643,10 @@
         .hero {
           padding: 2.4rem 2rem 2rem 2rem;
         }
+        .hero .logo {
+          width: 76px;
+          height: 76px;
+        }
         .hero h1 {
           font-size: 3.6rem;
         }
@@ -697,7 +701,10 @@
 
     <div class="shell">
       <div class="topbar">
-        <div class="brand"><span class="crest">FR</span> FantaReal</div>
+        <div class="brand">
+          <img class="crest" src="assets/fr-logo-192.png" alt="" width="34" height="34" />
+          FantaReal
+        </div>
         <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="sidebar">
           <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
           Indice
@@ -709,7 +716,7 @@
 
       <aside class="sidebar" id="sidebar">
         <div class="sidebar-head">
-          <span class="crest">FR</span>
+          <img class="crest" src="assets/fr-logo-192.png" alt="" width="34" height="34" />
           <span>
             <span class="lega-nome">FantaReal</span><br />
             <span class="lega-sotto">Regolamento ufficiale</span>
@@ -732,6 +739,7 @@
       <main id="content">
         <div class="content">
           <header class="hero">
+            <img class="logo" src="assets/fr-logo-192.png" alt="" width="64" height="64" />
             <span class="chip">Regolamento ufficiale</span>
             <h1>FantaReal<span class="dot">.</span></h1>
             <p class="tagline">Tutte le regole della lega, dall'iscrizione ai premi finali.</p>
@@ -984,14 +992,37 @@
               <span class="num">08</span>
               <h2>Formazione non inserita</h2>
             </div>
+
             <p>
-              Lo staff FantaReal non inserisce mai, per nessun motivo, la formazione a chi dimentica di consegnarla o a cui scompare dopo l'inizio della giornata - con un'unica eccezione: un
-              <strong>comprovato</strong> problema del sistema Fantacalcio.it.
+              Lo staff FantaReal <strong>non inserisce, modifica o ripristina mai la formazione a giornata in corso</strong> in caso di dimenticanze, ritardi o errori da parte del fantallenatore. Una
+              volta iniziata la prima partita di Serie A della giornata, fa fede esclusivamente la formazione registrata dal sistema.
             </p>
+
             <p>
-              In quel caso, contattare lo staff FantaReal è inutile: bisogna prima rivolgersi al supporto di Fantacalcio.it e chiedere conferma che la formazione fosse effettivamente inserita. Solo se
-              il supporto riconosce l'errore - allegando lo screenshot della loro risposta e quello della formazione già inserita, con relativo orario - lo staff FantaReal è autorizzato a reinserirla.
+              L'unica eccezione riguarda <strong>comprovati problemi tecnici imputabili all'applicazione</strong> che abbiano impedito al fantallenatore di inserire o salvare correttamente la
+              formazione.
             </p>
+
+            <p>
+              In caso di problemi tecnici, il primo e unico riferimento è il <strong>supporto Leghe Fantacalcio</strong>, che deve essere contattato direttamente. Qualora il supporto accerti un
+              malfunzionamento dei propri sistemi, la relativa risposta dovrà essere mostrata allo staff FantaReal.
+            </p>
+
+            <p>Solo in presenza di un <strong>malfunzionamento tecnico comprovato</strong>, lo staff FantaReal si riserva la possibilità di inserire la formazione anche a posteriori, purché:</p>
+
+            <ul>
+              <li>la segnalazione sia stata effettuata <strong>prima dell'inizio della prima partita di Serie A</strong> della giornata;</li>
+              <li>insieme alla segnalazione sia stata comunicata la <strong>formazione completa</strong>, con titolari e panchina;</li>
+              <li>il supporto Leghe Fantacalcio abbia <strong>confermato il malfunzionamento tecnico</strong> e tale conferma venga mostrata allo staff.</li>
+            </ul>
+
+            <div class="nota">
+              <strong
+                >Dimenticanze, ritardi, errori di inserimento o qualsiasi altra responsabilità riconducibile al fantallenatore non costituiscono motivo valido per l'inserimento della formazione a
+                posteriori.</strong
+              >
+              L'eccezione è prevista esclusivamente per comprovati problemi tecnici imputabili all'applicazione.
+            </div>
           </section>
 
           <section class="articolo" id="modifiche">
