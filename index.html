@@ -1,1 +1,1101 @@
-prova
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0F1526" />
+    <title>FantaReal - Regolamento Ufficiale</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        /* Superfici */
+        --notte: #0f1526;
+        --notte-2: #18203a;
+        --notte-3: #27314f;
+        --bg: #f4f6fa;
+        --carta: #ffffff;
+
+        /* Testo */
+        --inchiostro: #111726;
+        --inchiostro-soft: #5a6577;
+        --linea: #e4e8f0;
+
+        /* Accento */
+        --accent: #c9f24e;
+        --accent-scuro: #7e9f1c;
+
+        /* Ruoli */
+        --r-p: #e9a13b;
+        --r-d: #17a673;
+        --r-c: #2e6bff;
+        --r-a: #e24b4b;
+        --campo: #0e5c3a;
+
+        --sidebar-w: 290px;
+        --topbar-h: 58px;
+        --raggio: 18px;
+        --raggio-s: 12px;
+        --ombra: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px rgba(16, 24, 40, 0.05);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--inchiostro);
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 16px;
+        line-height: 1.62;
+        -webkit-font-smoothing: antialiased;
+      }
+      body.no-scroll {
+        overflow: hidden;
+      }
+      h1,
+      h2,
+      h3,
+      .display {
+        font-family: 'Space Grotesk', 'Inter', sans-serif;
+        color: var(--inchiostro);
+        margin: 0;
+        letter-spacing: -0.02em;
+      }
+      p {
+        margin: 0 0 0.9rem 0;
+      }
+      p:last-child {
+        margin-bottom: 0;
+      }
+      a {
+        color: inherit;
+      }
+      strong {
+        font-weight: 600;
+      }
+      ul {
+        margin: 0 0 1rem 0;
+        padding-left: 1.1rem;
+      }
+      li {
+        margin-bottom: 0.35rem;
+      }
+
+      /* Skip link */
+      .skip-link {
+        position: absolute;
+        left: -999px;
+        top: 0;
+        background: var(--accent);
+        color: var(--notte);
+        padding: 0.6rem 1rem;
+        z-index: 400;
+        font-weight: 600;
+        border-radius: 0 0 var(--raggio-s) 0;
+      }
+      .skip-link:focus {
+        left: 0;
+        top: 0;
+      }
+
+      /* ================= Layout - mobile first ================= */
+      .shell {
+        display: block;
+        min-height: 100vh;
+      }
+
+      /* App bar */
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        height: calc(var(--topbar-h) + env(safe-area-inset-top));
+        padding: env(safe-area-inset-top) 0.9rem 0 0.9rem;
+        background: rgba(15, 21, 38, 0.94);
+        backdrop-filter: saturate(140%) blur(10px);
+        -webkit-backdrop-filter: saturate(140%) blur(10px);
+        color: #fff;
+      }
+      .topbar .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 600;
+        font-size: 1.02rem;
+      }
+      .crest {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 11px;
+        flex-shrink: 0;
+        background: var(--accent);
+        color: var(--notte);
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: 0.82rem;
+        letter-spacing: -0.03em;
+      }
+      .menu-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        color: #fff;
+        font-family: inherit;
+        font-size: 0.82rem;
+        font-weight: 500;
+        padding: 0.42rem 0.7rem 0.42rem 0.6rem;
+        border-radius: 10px;
+      }
+      .menu-btn .bars {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+      .menu-btn .bars span {
+        display: block;
+        width: 15px;
+        height: 2px;
+        background: var(--accent);
+        border-radius: 2px;
+      }
+      .progress {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 0;
+        background: var(--accent);
+        transition: width 0.1s linear;
+      }
+
+      /* Drawer */
+      .scrim {
+        position: fixed;
+        inset: 0;
+        z-index: 90;
+        background: rgba(9, 13, 24, 0.55);
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.22s ease,
+          visibility 0.22s ease;
+      }
+      .scrim.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 100;
+        width: min(var(--sidebar-w), 84vw);
+        background: var(--notte);
+        color: #d5dcea;
+        padding: calc(1.1rem + env(safe-area-inset-top)) 0.8rem calc(1.5rem + env(safe-area-inset-bottom)) 0.8rem;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        transform: translateX(-101%);
+        transition: transform 0.26s cubic-bezier(0.22, 0.61, 0.36, 1);
+        box-shadow: 14px 0 40px rgba(6, 10, 20, 0.4);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .sidebar-head {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        padding: 0.2rem 0.5rem 1.1rem 0.5rem;
+      }
+      .sidebar-head .lega-nome {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 600;
+        font-size: 1.05rem;
+        color: #fff;
+        line-height: 1.25;
+      }
+      .sidebar-head .lega-sotto {
+        font-size: 0.74rem;
+        color: #7e8ba6;
+      }
+      .toc-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: #6c7a96;
+        padding: 0 0.65rem 0.5rem 0.65rem;
+      }
+      nav.toc {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      nav.toc a {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        text-decoration: none;
+        font-size: 0.88rem;
+        font-weight: 500;
+        color: #aeb9ce;
+        padding: 0.6rem 0.65rem;
+        border-radius: 10px;
+        transition:
+          color 0.15s ease,
+          background 0.15s ease;
+      }
+      nav.toc a .n {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+        border-radius: 7px;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 0.72rem;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+        color: #6c7a96;
+        background: rgba(255, 255, 255, 0.05);
+      }
+      nav.toc a:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.05);
+      }
+      nav.toc a.active {
+        color: var(--notte);
+        background: var(--accent);
+        font-weight: 600;
+      }
+      nav.toc a.active .n {
+        color: var(--notte);
+        background: rgba(15, 21, 38, 0.14);
+      }
+
+      /* Main */
+      main {
+        min-width: 0;
+      }
+      .content {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 1rem 1rem calc(3rem + env(safe-area-inset-bottom)) 1rem;
+      }
+
+      /* ================= Hero ================= */
+      .hero {
+        background: radial-gradient(120% 120% at 88% 0%, var(--notte-3) 0%, var(--notte-2) 42%, var(--notte) 100%);
+        color: #fff;
+        border-radius: var(--raggio);
+        padding: 1.5rem 1.25rem 1.25rem 1.25rem;
+        overflow: hidden;
+      }
+      .hero .chip {
+        display: inline-block;
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: rgba(201, 242, 78, 0.08);
+        border: 1px solid rgba(201, 242, 78, 0.35);
+        padding: 0.28rem 0.6rem;
+        border-radius: 999px;
+      }
+      .hero h1 {
+        font-size: clamp(2.3rem, 11vw, 3.4rem);
+        font-weight: 700;
+        color: #fff;
+        margin-top: 0.85rem;
+        line-height: 1;
+      }
+      .hero h1 .dot {
+        color: var(--accent);
+      }
+      .hero .tagline {
+        margin-top: 0.7rem;
+        color: #a9b4c9;
+        font-size: 0.95rem;
+        max-width: 46ch;
+      }
+
+      .quickfacts {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.55rem;
+        margin-top: 1.25rem;
+      }
+      .quickfacts .qf {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--raggio-s);
+        padding: 0.7rem 0.8rem;
+      }
+      .quickfacts .qf .label {
+        font-size: 0.7rem;
+        color: #94a0b8;
+      }
+      .quickfacts .qf .value {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: 1.3rem;
+        margin-top: 0.1rem;
+        line-height: 1.15;
+        color: #fff;
+      }
+      .quickfacts .qf.money .value {
+        color: var(--accent);
+      }
+
+      /* ================= Articolo ================= */
+      .articolo {
+        background: var(--carta);
+        border: 1px solid var(--linea);
+        border-radius: var(--raggio);
+        padding: 1.25rem 1.15rem;
+        margin-top: 0.85rem;
+        box-shadow: var(--ombra);
+        scroll-margin-top: calc(var(--topbar-h) + 1rem);
+      }
+      .art-head {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        margin-bottom: 0.85rem;
+      }
+      .art-head .num {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 28px;
+        height: 28px;
+        border-radius: 9px;
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: 0.75rem;
+        font-variant-numeric: tabular-nums;
+        color: var(--accent-scuro);
+        background: rgba(201, 242, 78, 0.22);
+      }
+      .art-head h2 {
+        font-size: 1.24rem;
+        font-weight: 600;
+        line-height: 1.25;
+      }
+      .sub {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 600;
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--inchiostro-soft);
+        margin: 1.4rem 0 0.55rem 0;
+      }
+      .nota {
+        font-size: 0.86rem;
+        color: var(--inchiostro-soft);
+        background: var(--bg);
+        border-left: 3px solid var(--linea);
+        border-radius: 0 var(--raggio-s) var(--raggio-s) 0;
+        padding: 0.7rem 0.9rem;
+        margin-top: 1rem;
+      }
+
+      /* Ruoli */
+      .ruoli-strip {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
+      .ruoli-strip .r {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: var(--bg);
+        border: 1px solid var(--linea);
+        border-radius: var(--raggio-s);
+        padding: 0.6rem 0.7rem;
+      }
+      .ruoli-strip .r .qty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 9px;
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #fff;
+      }
+      .ruoli-strip .r.p .qty {
+        background: var(--r-p);
+      }
+      .ruoli-strip .r.d .qty {
+        background: var(--r-d);
+      }
+      .ruoli-strip .r.c .qty {
+        background: var(--r-c);
+      }
+      .ruoli-strip .r.a .qty {
+        background: var(--r-a);
+      }
+      .ruoli-strip .r .sigla {
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      /* Campo */
+      .pitch-wrap {
+        margin: 1.1rem 0 0.4rem 0;
+      }
+      .pitch-wrap svg {
+        display: block;
+        width: 100%;
+        max-width: 340px;
+        height: auto;
+        margin: 0 auto;
+        border-radius: var(--raggio-s);
+      }
+      .legenda {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem 0.9rem;
+        justify-content: center;
+        margin-top: 0.8rem;
+        font-size: 0.8rem;
+        color: var(--inchiostro-soft);
+      }
+      .legenda span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+      .legenda i {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .legenda .lp {
+        background: var(--r-p);
+      }
+      .legenda .ld {
+        background: var(--r-d);
+      }
+      .legenda .lc {
+        background: var(--r-c);
+      }
+      .legenda .la {
+        background: var(--r-a);
+      }
+
+      /* Bonus / Malus */
+      .ledger {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+        margin-top: 1rem;
+      }
+      .ledger .col {
+        border: 1px solid var(--linea);
+        border-radius: var(--raggio-s);
+        overflow: hidden;
+      }
+      .ledger .col-head {
+        padding: 0.6rem 0.85rem;
+        color: #fff;
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 600;
+        font-size: 0.92rem;
+      }
+      .ledger .bonus .col-head {
+        background: var(--r-d);
+      }
+      .ledger .malus .col-head {
+        background: var(--r-a);
+      }
+      .ledger .riga {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 0.55rem 0.85rem;
+        font-size: 0.88rem;
+        border-top: 1px solid var(--linea);
+      }
+      .ledger .col-head + .riga {
+        border-top: none;
+      }
+      .ledger .riga .val {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .ledger .bonus .val {
+        color: var(--r-d);
+      }
+      .ledger .malus .val {
+        color: var(--r-a);
+      }
+
+      /* Competizioni */
+      .comp {
+        background: var(--bg);
+        border: 1px solid var(--linea);
+        border-left: 4px solid var(--linea);
+        border-radius: var(--raggio-s);
+        padding: 0.85rem 0.95rem;
+        margin-top: 0.6rem;
+      }
+      .comp.campionato {
+        border-left-color: var(--r-c);
+      }
+      .comp.mundialito {
+        border-left-color: var(--r-p);
+      }
+      .comp.highlander {
+        border-left-color: var(--r-a);
+      }
+      .comp h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+      .comp p {
+        font-size: 0.9rem;
+        color: var(--inchiostro-soft);
+      }
+
+      /* Chiusura */
+      .chiusura {
+        margin-top: 0.85rem;
+        padding: 1.4rem 1.15rem;
+        background: var(--notte);
+        color: #fff;
+        border-radius: var(--raggio);
+      }
+      .chiusura h2 {
+        font-size: 1.15rem;
+        color: #fff;
+        margin-bottom: 0.45rem;
+      }
+      .chiusura p {
+        color: #a9b4c9;
+        font-size: 0.92rem;
+      }
+      footer {
+        padding: 1.4rem 0.3rem 0 0.3rem;
+        font-size: 0.76rem;
+        color: var(--inchiostro-soft);
+      }
+
+      /* ================= Desktop ================= */
+      @media (min-width: 900px) {
+        .shell {
+          display: flex;
+        }
+        .topbar {
+          display: none;
+        }
+        .scrim {
+          display: none;
+        }
+        .sidebar {
+          position: sticky;
+          top: 0;
+          height: 100vh;
+          width: var(--sidebar-w);
+          flex-shrink: 0;
+          transform: none;
+          box-shadow: none;
+          padding: 1.6rem 1rem;
+        }
+        .content {
+          padding: 2.5rem 2rem 5rem 2rem;
+        }
+        .hero {
+          padding: 2.4rem 2rem 2rem 2rem;
+        }
+        .hero h1 {
+          font-size: 3.6rem;
+        }
+        .quickfacts {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .articolo {
+          padding: 1.9rem 1.8rem;
+          margin-top: 1rem;
+          scroll-margin-top: 1.5rem;
+        }
+        .art-head h2 {
+          font-size: 1.45rem;
+        }
+        .ruoli-strip {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .ledger {
+          grid-template-columns: 1fr 1fr;
+          gap: 0.7rem;
+        }
+        .chiusura {
+          padding: 2rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .sidebar,
+        .scrim,
+        .progress {
+          transition: none;
+        }
+      }
+
+      ::selection {
+        background: var(--accent);
+        color: var(--notte);
+      }
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid var(--accent-scuro);
+        outline-offset: 2px;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Vai al contenuto</a>
+
+    <div class="shell">
+      <div class="topbar">
+        <div class="brand"><span class="crest">FR</span> FantaReal</div>
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="sidebar">
+          <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+          Indice
+        </button>
+        <div class="progress" id="progress"></div>
+      </div>
+
+      <div class="scrim" id="scrim" hidden></div>
+
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-head">
+          <span class="crest">FR</span>
+          <span>
+            <span class="lega-nome">FantaReal</span><br />
+            <span class="lega-sotto">Regolamento ufficiale</span>
+          </span>
+        </div>
+        <div class="toc-label">Indice</div>
+        <nav class="toc" id="toc">
+          <a href="#iscrizione"><span class="n">01</span> Iscrizione</a>
+          <a href="#etica"><span class="n">02</span> Etica</a>
+          <a href="#piattaforma"><span class="n">03</span> Piattaforma e mercato</a>
+          <a href="#rosa-formazione"><span class="n">04</span> Rosa e formazione</a>
+          <a href="#punteggio"><span class="n">05</span> Punteggio, bonus e malus</a>
+          <a href="#competizioni"><span class="n">06</span> Le competizioni</a>
+          <a href="#premi"><span class="n">07</span> I premi</a>
+          <a href="#formazione-non-inserita"><span class="n">08</span> Formazione non inserita</a>
+          <a href="#modifiche"><span class="n">09</span> Modifiche al regolamento</a>
+        </nav>
+      </aside>
+
+      <main id="content">
+        <div class="content">
+          <header class="hero">
+            <span class="chip">Regolamento ufficiale</span>
+            <h1>FantaReal<span class="dot">.</span></h1>
+            <p class="tagline">Tutte le regole della lega, dall'iscrizione ai premi finali.</p>
+
+            <div class="quickfacts">
+              <div class="qf money">
+                <div class="label">Iscrizione</div>
+                <div class="value">50 €</div>
+              </div>
+              <div class="qf">
+                <div class="label">Crediti iniziali</div>
+                <div class="value">180</div>
+              </div>
+              <div class="qf">
+                <div class="label">Rosa</div>
+                <div class="value">18 giocatori</div>
+              </div>
+              <div class="qf">
+                <div class="label">Modulo</div>
+                <div class="value">3-4-3</div>
+              </div>
+            </div>
+          </header>
+
+          <section class="articolo" id="iscrizione">
+            <div class="art-head">
+              <span class="num">01</span>
+              <h2>Iscrizione</h2>
+            </div>
+            <p>La quota di iscrizione a FantaReal è di <strong>50 €</strong>, da versare per procedere con l'invito nella lega. Le iscrizioni restano sempre aperte: non è prevista alcuna scadenza.</p>
+            <p>Per qualsiasi problema o ritardo con l'invito alla lega, contatta lo staff: verrà risolto il prima possibile.</p>
+          </section>
+
+          <section class="articolo" id="etica">
+            <div class="art-head">
+              <span class="num">02</span>
+              <h2>Etica</h2>
+            </div>
+            <p>
+              Per un sano divertimento comune, la redazione invita a evitare qualsiasi agevolazione nei confronti degli avversari. Ogni partecipante è tenuto a schierare la formazione migliore
+              possibile per tutta la durata del campionato.
+            </p>
+            <p>
+              Qualsiasi comportamento antisportivo nei confronti dello staff FantaReal o degli altri partecipanti viene sanzionato, fino alla squalifica della squadra dal torneo. Sono tassativamente
+              vietati nomi utente che possano in qualche modo ledere la sensibilità dei partecipanti.
+            </p>
+            <div class="nota">Lo staff FantaReal si riserva la possibilità di eliminare un account in qualsiasi momento, prima o durante il campionato.</div>
+          </section>
+
+          <section class="articolo" id="piattaforma">
+            <div class="art-head">
+              <span class="num">03</span>
+              <h2>Piattaforma e mercato</h2>
+            </div>
+            <p>
+              L'unica fonte ufficiale per voti e punteggi è <strong>Fantacalcio.it</strong>, la stessa piattaforma su cui si disputa la competizione. Bonus, malus e punteggi fanno riferimento
+              esclusivamente ai dati pubblicati lì.
+            </p>
+            <p>Il mercato è accessibile tutti i giorni della settimana, 24 ore su 24. Viene sospeso soltanto durante lo svolgimento della giornata di campionato.</p>
+          </section>
+
+          <section class="articolo" id="rosa-formazione">
+            <div class="art-head">
+              <span class="num">04</span>
+              <h2>Rosa e formazione</h2>
+            </div>
+            <p>Ogni allenatore dispone di un budget di <strong>180 crediti</strong> per acquistare <strong>18 giocatori</strong>:</p>
+            <div class="ruoli-strip">
+              <div class="r p">
+                <div class="qty">2</div>
+                <div class="sigla">Portieri</div>
+              </div>
+              <div class="r d">
+                <div class="qty">6</div>
+                <div class="sigla">Difensori</div>
+              </div>
+              <div class="r c">
+                <div class="qty">6</div>
+                <div class="sigla">Centrocampisti</div>
+              </div>
+              <div class="r a">
+                <div class="qty">4</div>
+                <div class="sigla">Attaccanti</div>
+              </div>
+            </div>
+            <p>
+              La rosa può essere mantenuta o modificata, in parte o per intero, liberamente ogni settimana. Il prezzo di acquisto e di svincolo di ogni calciatore corrisponde sempre alla sua
+              quotazione attuale, così da generare plusvalenze e minusvalenze per chi segue con attenzione il mercato.
+            </p>
+
+            <div class="sub">Il modulo</div>
+            <p>Il modulo è fisso e uguale per tutti, non è soggetto a modifiche: il vecchio caro <strong>3-4-3</strong>.</p>
+
+            <div class="pitch-wrap">
+              <svg viewBox="0 0 360 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schema del modulo 3-4-3: un portiere, tre difensori, quattro centrocampisti, tre attaccanti">
+                <rect x="0" y="0" width="360" height="560" fill="#0E5C3A"></rect>
+                <g fill="#116B44">
+                  <rect x="0" y="0" width="360" height="70"></rect>
+                  <rect x="0" y="140" width="360" height="70"></rect>
+                  <rect x="0" y="280" width="360" height="70"></rect>
+                  <rect x="0" y="420" width="360" height="70"></rect>
+                </g>
+                <g fill="none" stroke="#EAF5EE" stroke-opacity="0.45" stroke-width="2">
+                  <rect x="14" y="14" width="332" height="532"></rect>
+                  <line x1="14" y1="280" x2="346" y2="280"></line>
+                  <circle cx="180" cy="280" r="52"></circle>
+                  <rect x="90" y="458" width="180" height="88"></rect>
+                  <rect x="132" y="506" width="96" height="40"></rect>
+                  <rect x="90" y="14" width="180" height="88"></rect>
+                  <rect x="132" y="14" width="96" height="40"></rect>
+                </g>
+                <circle cx="180" cy="280" r="3" fill="#EAF5EE" fill-opacity="0.45"></circle>
+
+                <g font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+                  <!-- Portiere (1) -->
+                  <circle cx="180" cy="498" r="17" fill="#E9A13B"></circle>
+                  <text x="180" y="503">P</text>
+
+                  <!-- Difensori (3) -->
+                  <circle cx="88" cy="412" r="17" fill="#17A673"></circle>
+                  <text x="88" y="417">D</text>
+                  <circle cx="180" cy="412" r="17" fill="#17A673"></circle>
+                  <text x="180" y="417">D</text>
+                  <circle cx="272" cy="412" r="17" fill="#17A673"></circle>
+                  <text x="272" y="417">D</text>
+
+                  <!-- Centrocampisti (4) -->
+                  <circle cx="56" cy="300" r="17" fill="#2E6BFF"></circle>
+                  <text x="56" y="305">C</text>
+                  <circle cx="139" cy="300" r="17" fill="#2E6BFF"></circle>
+                  <text x="139" y="305">C</text>
+                  <circle cx="221" cy="300" r="17" fill="#2E6BFF"></circle>
+                  <text x="221" y="305">C</text>
+                  <circle cx="304" cy="300" r="17" fill="#2E6BFF"></circle>
+                  <text x="304" y="305">C</text>
+
+                  <!-- Attaccanti (3) -->
+                  <circle cx="92" cy="152" r="17" fill="#E24B4B"></circle>
+                  <text x="92" y="157">A</text>
+                  <circle cx="180" cy="122" r="17" fill="#E24B4B"></circle>
+                  <text x="180" y="127">A</text>
+                  <circle cx="268" cy="152" r="17" fill="#E24B4B"></circle>
+                  <text x="268" y="157">A</text>
+                </g>
+              </svg>
+              <div class="legenda">
+                <span><i class="lp"></i> Portiere</span>
+                <span><i class="ld"></i> Difensori</span>
+                <span><i class="lc"></i> Centrocampisti</span>
+                <span><i class="la"></i> Attaccanti</span>
+              </div>
+            </div>
+
+            <div class="sub">Panchina e consegna</div>
+            <p>
+              Degli 18 giocatori in rosa, 11 scendono in campo secondo il 3-4-3; tutti gli altri restano in panchina. <strong>La composizione della panchina è libera</strong>: sta a te decidere come
+              ordinarla e quali ruoli tenere di riserva.
+            </p>
+            <p>La formazione può essere consegnata fino all'inizio della prima partita della giornata di Serie A.</p>
+          </section>
+
+          <section class="articolo" id="punteggio">
+            <div class="art-head">
+              <span class="num">05</span>
+              <h2>Punteggio, bonus e malus</h2>
+            </div>
+            <p>Al voto base della pagella, il sistema somma i bonus e sottrae i malus riportati di seguito.</p>
+            <div class="ledger">
+              <div class="col bonus">
+                <div class="col-head">Bonus</div>
+                <div class="riga"><span>Goal segnato</span><span class="val">+3</span></div>
+                <div class="riga"><span>Rigore segnato</span><span class="val">+3</span></div>
+                <div class="riga"><span>Rigore neutralizzato dal portiere</span><span class="val">+3</span></div>
+                <div class="riga"><span>Assist</span><span class="val">+1</span></div>
+                <div class="riga"><span>Porta inviolata (portiere)</span><span class="val">+1</span></div>
+              </div>
+              <div class="col malus">
+                <div class="col-head">Malus</div>
+                <div class="riga"><span>Rigore sbagliato</span><span class="val">−3</span></div>
+                <div class="riga"><span>Autorete</span><span class="val">−2</span></div>
+                <div class="riga"><span>Espulsione</span><span class="val">−1</span></div>
+                <div class="riga"><span>Gol subito (portiere)</span><span class="val">−1</span></div>
+                <div class="riga"><span>Ammonizione</span><span class="val">−0,5</span></div>
+              </div>
+            </div>
+
+            <div class="sub">Partite sospese</div>
+            <p>
+              Nel caso di partite sospese e non recuperate entro 48 ore, tutti i calciatori delle squadre coinvolte - esclusi squalificati e fuori rosa - ricevono il classico
+              <strong>6 politico</strong>.
+            </p>
+            <div class="nota">
+              Lo staff FantaReal si riserva la possibilità di valutare e decidere caso per caso quale soluzione adottare quando le 48 ore vengono superate per partite sospese o rinviate.
+            </div>
+          </section>
+
+          <section class="articolo" id="competizioni">
+            <div class="art-head">
+              <span class="num">06</span>
+              <h2>Le competizioni</h2>
+            </div>
+            <p>Nella stessa stagione convivono tre competizioni:</p>
+
+            <div class="comp campionato">
+              <h3>Campionato</h3>
+              <p>La classifica generale della lega. Ogni giornata il punteggio ottenuto si somma a quello precedente; a fine campionato vince chi ha totalizzato più punti.</p>
+            </div>
+
+            <div class="comp mundialito">
+              <h3>Mundialito</h3>
+              <p>
+                Parte intorno alla 25ª giornata. In base al numero di iscritti si seleziona il maggior numero possibile di partecipanti per una fase a gironi (sola andata), seguita da eliminazione
+                diretta. Dà una seconda possibilità di vittoria a chi non occupa le posizioni alte della classifica generale.
+              </p>
+            </div>
+
+            <div class="comp highlander">
+              <h3>Highlander</h3>
+              <p>
+                Competizione a eliminazione che accompagna l'intero campionato: a ogni giornata vengono eliminati uno o due dei punteggi più bassi, finché non resta un solo fantallenatore in corsa.
+              </p>
+            </div>
+          </section>
+
+          <section class="articolo" id="premi">
+            <div class="art-head">
+              <span class="num">07</span>
+              <h2>I premi</h2>
+            </div>
+
+            <div class="sub">Premio settimanale</div>
+            <p>Oltre alle tre competizioni, ogni giornata viene assegnato un premio in denaro a chi realizza il punteggio più alto - il record di giornata.</p>
+            <p>
+              In caso di parità tra due o più fantallenatori, il premio viene diviso in parti uguali tra i vincitori. Esempio: se A, B e Z totalizzano lo stesso punteggio, il premio si divide
+              equamente tra i tre.
+            </p>
+
+            <div class="sub">Premio finale</div>
+            <p>
+              Al termine delle 38 giornate di campionato, i primi classificati nella classifica generale ricevono un premio in denaro. Anche qui, in caso di parità tra due o più fantallenatori, il
+              premio viene diviso in parti uguali.
+            </p>
+            <p>Un ulteriore premio è destinato ai vincitori delle competizioni Mundialito e Highlander.</p>
+          </section>
+
+          <section class="articolo" id="formazione-non-inserita">
+            <div class="art-head">
+              <span class="num">08</span>
+              <h2>Formazione non inserita</h2>
+            </div>
+            <p>
+              Lo staff FantaReal non inserisce mai, per nessun motivo, la formazione a chi dimentica di consegnarla o a cui scompare dopo l'inizio della giornata - con un'unica eccezione: un
+              <strong>comprovato</strong> problema del sistema Fantacalcio.it.
+            </p>
+            <p>
+              In quel caso, contattare lo staff FantaReal è inutile: bisogna prima rivolgersi al supporto di Fantacalcio.it e chiedere conferma che la formazione fosse effettivamente inserita. Solo se
+              il supporto riconosce l'errore - allegando lo screenshot della loro risposta e quello della formazione già inserita, con relativo orario - lo staff FantaReal è autorizzato a reinserirla.
+            </p>
+          </section>
+
+          <section class="articolo" id="modifiche">
+            <div class="art-head">
+              <span class="num">09</span>
+              <h2>Modifiche al regolamento</h2>
+            </div>
+            <p>
+              Lo staff FantaReal si riserva, in via del tutto eccezionale e solo quando strettamente necessario, di apportare modifiche al regolamento per garantire il regolare svolgimento del torneo
+              fino al suo termine.
+            </p>
+          </section>
+
+          <div class="chiusura">
+            <h2>Qualche regola non è chiara?</h2>
+            <p>Per qualsiasi chiarimento non esitare a contattarci: lo staff è attivo 24 ore su 24 e pronto a rispondere a qualsiasi domanda.</p>
+          </div>
+
+          <footer>Regolamento FantaReal.</footer>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      (function () {
+        var menuBtn = document.getElementById('menuBtn');
+        var sidebar = document.getElementById('sidebar');
+        var scrim = document.getElementById('scrim');
+
+        function setDrawer(open) {
+          sidebar.classList.toggle('open', open);
+          scrim.classList.toggle('show', open);
+          scrim.hidden = !open;
+          document.body.classList.toggle('no-scroll', open);
+          if (menuBtn) menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+
+        if (menuBtn) {
+          menuBtn.addEventListener('click', function () {
+            setDrawer(!sidebar.classList.contains('open'));
+          });
+        }
+        scrim.addEventListener('click', function () {
+          setDrawer(false);
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && sidebar.classList.contains('open')) setDrawer(false);
+        });
+
+        var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+        links.forEach(function (link) {
+          link.addEventListener('click', function () {
+            setDrawer(false);
+          });
+        });
+
+        /* Scrollspy */
+        var sections = links
+          .map(function (l) {
+            return document.querySelector(l.getAttribute('href'));
+          })
+          .filter(Boolean);
+        if ('IntersectionObserver' in window) {
+          var observer = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                var id = '#' + entry.target.id;
+                var link = links.filter(function (l) {
+                  return l.getAttribute('href') === id;
+                })[0];
+                if (!link) return;
+                if (entry.isIntersecting) {
+                  links.forEach(function (l) {
+                    l.classList.remove('active');
+                  });
+                  link.classList.add('active');
+                }
+              });
+            },
+            { rootMargin: '-15% 0px -70% 0px', threshold: 0 },
+          );
+          sections.forEach(function (s) {
+            observer.observe(s);
+          });
+        }
+
+        /* Barra di avanzamento lettura */
+        var progress = document.getElementById('progress');
+        if (progress) {
+          var ticking = false;
+          window.addEventListener(
+            'scroll',
+            function () {
+              if (ticking) return;
+              ticking = true;
+              window.requestAnimationFrame(function () {
+                var h = document.documentElement.scrollHeight - window.innerHeight;
+                var p = h > 0 ? (window.scrollY / h) * 100 : 0;
+                progress.style.width = Math.min(100, Math.max(0, p)) + '%';
+                ticking = false;
+              });
+            },
+            { passive: true },
+          );
+        }
+      })();
+    </script>
+  </body>
+</html>
