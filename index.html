@@ -589,9 +589,15 @@
         font-weight: 600;
         margin-bottom: 0.25rem;
       }
-      .comp p {
+      .comp p,
+      .comp ul,
+      .comp ol {
         font-size: 0.9rem;
         color: var(--inchiostro-soft);
+      }
+      .comp ul:last-child,
+      .comp ol:last-child {
+        margin-bottom: 0;
       }
 
       /* Chiusura */
@@ -964,9 +970,9 @@
               </p>
               <p>In caso di parità di punti, l'app Fantacalcio ordina la classifica applicando nell'ordine questi criteri:</p>
               <ol>
-                <li>fantavoto più alto tra titolari e subentrati;</li>
-                <li>fantavoto più alto tra i panchinari non subentrati;</li>
-                <li>scelta <strong>casuale</strong> del sistema, non configurabile né controllabile da noi amministratori.</li>
+                <li>Punteggio totale più alto tra titolari e subentrati;</li>
+                <li>Punteggio totale più alto tra i panchinari non subentrati;</li>
+                <li>Scelta <strong>casuale</strong> del sistema, non configurabile né controllabile da noi amministratori.</li>
               </ol>
             </div>
           </section>
