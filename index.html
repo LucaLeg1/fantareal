@@ -83,7 +83,8 @@
       strong {
         font-weight: 600;
       }
-      ul {
+      ul,
+      ol {
         margin: 0 0 1rem 0;
         padding-left: 1.1rem;
       }
@@ -959,10 +960,14 @@
             <div class="comp highlander">
               <h3>Highlander</h3>
               <p>
-                Competizione a eliminazione che accompagna l'intero campionato: a ogni giornata vengono eliminati uno o due dei punteggi più bassi, finché non resta un solo fantallenatore in corsa. In
-                caso di parità tra due o più fantallenatori con punteggi più bassi l'app Fantacalcio decide <strong>casualmente</strong> chi eliminare. Putroppo questa non è una cosa configurabile o
-                controllabile da noi amministratori.
+                Competizione a eliminazione che accompagna l'intero campionato: a ogni giornata vengono eliminati uno o due dei punteggi più bassi, finché non resta un solo fantallenatore in corsa.
               </p>
+              <p>In caso di parità di punti, l'app Fantacalcio ordina la classifica applicando nell'ordine questi criteri:</p>
+              <ol>
+                <li>fantavoto più alto tra titolari e subentrati;</li>
+                <li>fantavoto più alto tra i panchinari non subentrati;</li>
+                <li>scelta <strong>casuale</strong> del sistema, non configurabile né controllabile da noi amministratori.</li>
+              </ol>
             </div>
           </section>
 
